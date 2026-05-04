@@ -14,6 +14,7 @@ The assistant may:
 - Create and update Markdown guides.
 - Create and update tutorial-style HTML files.
 - Create and update README files.
+- Create and update repository hub pages such as `index.html`.
 - Add navigation links and index entries.
 - Improve structure, formatting, clarity, and consistency.
 - Add code blocks, commands, checklists, tables, and troubleshooting sections.
@@ -73,6 +74,35 @@ Tone:
 - No hype.
 - End with a clear decision or next action.
 
+## Repository Hub Standard
+
+The root `index.html` is the official homepage and tutorial hub for this repository.
+
+Use it to organize and navigate between guides, tutorials, playbooks, and future learning tracks.
+
+When creating or updating a hub page, follow the `tutorial-hub` standard:
+
+- Single self-contained HTML file.
+- Arabic-first RTL layout.
+- Search bar.
+- Category filters.
+- Responsive tutorial cards grid.
+- Progress aggregation from localStorage when possible.
+- Cards for available guides and planned guides.
+- Clear links to guide HTML pages and Markdown support files.
+- Mobile-friendly layout.
+- Theme toggle when practical.
+
+Preferred visual direction:
+
+- Calm Claude-inspired palette.
+- Warm cream backgrounds.
+- Charcoal text.
+- Clay / muted orange accents.
+- Soft borders and shadows.
+- Comfortable reading experience.
+- Avoid aggressive neon unless the specific guide requires it.
+
 ## Tutorial HTML Standard
 
 When creating `slides.html` or educational guides, prefer a tutorial-style HTML page rather than static slides.
@@ -80,7 +110,7 @@ When creating `slides.html` or educational guides, prefer a tutorial-style HTML 
 The page should include, when practical:
 
 - RTL Arabic layout.
-- Dark premium tech style.
+- Calm premium tech style.
 - Sidebar or section navigation.
 - Progress indicator.
 - Step-by-step sections.
@@ -136,3 +166,7 @@ Owner:
 Main path for guides:
 
 `/posts`
+
+Official homepage:
+
+`index.html`
