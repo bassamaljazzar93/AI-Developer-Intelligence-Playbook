@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>تشغيل Local Models داخل Claude Code</title>
+  <style>
+    :root{--bg:#050816;--panel:#0b1024;--cyan:#22d3ee;--purple:#a78bfa;--text:#f8fafc;--muted:#94a3b8;--danger:#fb7185;}
+    *{box-sizing:border-box} body{margin:0;background:radial-gradient(circle at top left,#172554,#050816 45%,#020617);font-family:Arial,Tahoma,sans-serif;color:var(--text)}
+    .deck{max-width:1200px;margin:auto;padding:32px}.slide{min-height:620px;border:1px solid rgba(34,211,238,.25);background:linear-gradient(135deg,rgba(15,23,42,.92),rgba(2,6,23,.96));border-radius:28px;margin:0 0 28px;padding:42px;box-shadow:0 0 40px rgba(34,211,238,.08)}
+    .badge{display:inline-block;border:1px solid var(--cyan);border-radius:999px;padding:8px 16px;color:var(--cyan);font-weight:700;margin-bottom:22px}.kicker{color:var(--muted);font-size:22px}.title{font-size:56px;line-height:1.1;margin:0 0 18px;font-weight:900}.grad{background:linear-gradient(90deg,var(--cyan),var(--purple));-webkit-background-clip:text;color:transparent}.grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}.card{background:rgba(15,23,42,.75);border:1px solid rgba(148,163,184,.22);border-radius:22px;padding:24px;margin:14px 0}.big{font-size:30px;font-weight:800}.muted{color:var(--muted)}code,pre{direction:ltr;text-align:left;background:#020617;border:1px solid rgba(34,211,238,.25);border-radius:16px;padding:16px;color:#67e8f9;display:block;white-space:pre-wrap}.warn{border-color:rgba(251,113,133,.45);color:#fecdd3}.footer{margin-top:30px;color:var(--muted);font-size:14px;letter-spacing:2px}.row{display:flex;gap:16px;align-items:center;justify-content:space-between}.num{width:48px;height:48px;border-radius:14px;background:rgba(34,211,238,.1);border:1px solid var(--cyan);display:flex;align-items:center;justify-content:center;color:var(--cyan);font-weight:900}.table{width:100%;border-collapse:collapse;margin-top:18px}.table td,.table th{border:1px solid rgba(148,163,184,.22);padding:14px}.table th{color:var(--cyan)}ul{font-size:24px;line-height:1.9}li::marker{color:var(--cyan)}
+  </style>
+</head>
+<body>
+<main class="deck">
+
+<section class="slide">
+  <span class="badge">دليل عملي مختصر</span>
+  <h1 class="title">تشغيل <span class="grad">Local Models</span><br>داخل <span class="grad">Claude Code</span></h1>
+  <p class="kicker">من الصفر إلى أفضل إعداد عملي على Windows / macOS / Linux</p>
+  <div class="grid">
+    <div class="card"><div class="big">الفكرة</div><p>تشغيل موديلات محلية لتقليل التكلفة، التجربة بسرعة، وحفظ Claude الحقيقي للمهام الصعبة.</p></div>
+    <div class="card"><ul><li>أفضل طرق التنصيب والربط</li><li>مشاكل الناس الشائعة والحلول</li><li>اختيار الموديل المناسب</li><li>خطة تنفيذ خلال 24 ساعة</li></ul></div>
+  </div>
+  <div class="footer">Bassam Research Slides</div>
+</section>
+
+<section class="slide">
+  <span class="badge">Architecture</span>
+  <h2 class="title">كيف تعمل الفكرة؟</h2>
+  <p class="kicker">Claude Code لا يشغّل الموديل بنفسه — بل يتصل بـ API محلي أو وسيط.</p>
+  <div class="grid">
+    <div class="card"><div class="num">1</div><h3>Claude Code</h3><p>واجهة Agentic Coding.</p></div>
+    <div class="card"><div class="num">2</div><h3>Anthropic-compatible API</h3><p>طبقة اتصال بين Claude Code والموديل.</p></div>
+  </div>
+  <div class="card"><div class="big">Backends</div><p>Ollama / LM Studio / llama.cpp / LiteLLM Router</p></div>
+</section>
+
+<section class="slide">
+  <span class="badge">Fast Start</span>
+  <h2 class="title">أسرع مسار للتشغيل: <span class="grad">Ollama</span></h2>
+  <div class="grid">
+    <div class="card"><div class="num">1</div><h3>ثبّت Claude Code</h3><p>curl أو PowerShell install</p></div>
+    <div class="card"><div class="num">2</div><h3>ثبّت Ollama</h3><p>install from ollama.com</p></div>
+    <div class="card"><div class="num">3</div><h3>نزّل الموديل</h3><pre>ollama pull qwen3.5</pre></div>
+    <div class="card"><div class="num">4</div><h3>شغّل</h3><pre>ollama launch claude --model qwen3.5</pre></div>
+  </div>
+</section>
+
+<section class="slide">
+  <span class="badge">Manual Setup</span>
+  <h2 class="title">الربط اليدوي مع Claude Code</h2>
+  <pre>ANTHROPIC_AUTH_TOKEN=ollama
+ANTHROPIC_API_KEY=
+ANTHROPIC_BASE_URL=http://localhost:11434
+
+claude --model qwen3.5</pre>
+  <div class="card warn"><div class="big">تنبيه مهم</div><p>لا تضف /v1 في عنوان Ollama. العنوان الصحيح هو http://localhost:11434. خطأ 404 غالبًا سببه هذا التفصيل.</p></div>
+</section>
+
+<section class="slide">
+  <span class="badge">Options</span>
+  <h2 class="title">البدائل الأخرى: متى تستخدم كل خيار؟</h2>
+  <table class="table">
+    <tr><th>الخيار</th><th>متى تستخدمه؟</th><th>الحكم</th></tr>
+    <tr><td>Ollama</td><td>أسرع تشغيل محلي</td><td>ابدأ هنا</td></tr>
+    <tr><td>LM Studio</td><td>واجهة GUI وتجارب سريعة</td><td>خيار ثاني ممتاز</td></tr>
+    <tr><td>llama.cpp</td><td>GGUF وتحكم متقدم</td><td>لاحقًا</td></tr>
+    <tr><td>LiteLLM Router</td><td>Routing بين موديلات</td><td>ليس البداية</td></tr>
+  </table>
+</section>
+
+<section class="slide">
+  <span class="badge">Performance</span>
+  <h2 class="title">الأداء والسياق <span class="grad">Context Length</span></h2>
+  <ul><li>للمهام Agentic Coding: يفضل 64K إن توفر العتاد.</li><li>على CPU أو جهاز ضعيف: ابدأ بـ 16K أو 32K.</li><li>السياق الكبير يحتاج VRAM / RAM كافية.</li><li>إذا زاد الحمل على CPU ستصبح التجربة بطيئة جدًا.</li></ul>
+  <pre>OLLAMA_CONTEXT_LENGTH=64000 ollama serve</pre>
+</section>
+
+<section class="slide">
+  <span class="badge">Troubleshooting</span>
+  <h2 class="title">أشهر المشاكل — والحلول مباشرة</h2>
+  <div class="grid">
+    <div class="card warn"><h3>404 Error</h3><p>لا تضف /v1 إلى ANTHROPIC_BASE_URL مع Ollama.</p></div>
+    <div class="card warn"><h3>الموديل لا يستخدم الأدوات</h3><p>اختر موديل Agentic / Coding حديث.</p></div>
+    <div class="card warn"><h3>بطء أو تعليق</h3><p>خفّض السياق وابدأ من 16K أو 32K.</p></div>
+    <div class="card warn"><h3>النتيجة ضعيفة</h3><p>غالبًا الموديل صغير 7B/8B وليس المشكلة في Claude Code.</p></div>
+  </div>
+</section>
+
+<section class="slide">
+  <span class="badge">Models</span>
+  <h2 class="title">أفضل الموديلات للبداية</h2>
+  <ol style="font-size:28px;line-height:2">
+    <li>Qwen3.5 / Qwen Coder — خيار قوي للكود.</li>
+    <li>GLM Flash style models — مفيد للمهام Agentic Coding.</li>
+    <li>Kimi / MiniMax عبر Cloud route — قوي لكنه ليس محليًا بالكامل.</li>
+    <li>7B / 8B — فقط للمهام الصغيرة والشرح السريع.</li>
+  </ol>
+</section>
+
+<section class="slide">
+  <span class="badge">24 Hours</span>
+  <h2 class="title">خطة تنفيذ خلال 24 ساعة</h2>
+  <div class="grid">
+    <div class="card"><h3>اليوم — 60 دقيقة</h3><ul><li>ثبّت Claude Code</li><li>ثبّت Ollama</li><li>نزّل qwen3.5</li><li>شغّل الأمر الأساسي</li></ul></div>
+    <div class="card"><h3>غدًا — 90 دقيقة</h3><ul><li>شرح مشروع</li><li>Bug صغير</li><li>Test واحد</li><li>قيّم النتيجة</li></ul></div>
+  </div>
+  <div class="card"><div class="big">القرار النهائي</div><p>هل يقلل استهلاك Claude الحقيقي في المهام اليومية؟</p></div>
+</section>
+
+</main>
+</body>
+</html>
