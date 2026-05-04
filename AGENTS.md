@@ -29,8 +29,39 @@ The assistant must not:
 - Publish sensitive personal, employment, government, or restricted information.
 - Delete existing guides or major folders unless the user explicitly asks.
 - Rewrite the whole repository without a clear reason.
-- Claim that a command, model, tool, or pricing detail is current without checking when current information matters.
+- Claim that a command, model, tool, pricing detail, or community trend is current without checking when current information matters.
 - Add unsafe install commands without explaining what they do or linking them to the commands guide.
+
+## Deep Guide Methodology
+
+When the user asks for a complete guide about a tool, product, model, framework, or developer workflow, follow this methodology by default:
+
+1. Read the official documentation or official repository when available.
+2. Search GitHub for official repos, community templates, examples, plugins, issues, and common failure patterns.
+3. Search public community discussions such as Reddit, Hacker News, Discord notes, forum posts, or GitHub Discussions when browsing access is available.
+4. Separate facts from community opinions.
+5. Create a practical guide, not a long article.
+6. Include a section named `Tricks, Tips & Field Notes`.
+7. Include a section named `Common Problems & Fixes`.
+8. Include a section named `24-Hour Test Plan`.
+9. Include direct links to sources and mark unverified observations clearly.
+10. Update the root `index.html` hub with the new guide card.
+
+Default deliverables for a deep guide:
+
+```text
+/posts/topic-name/
+├── README.md
+├── quick-start.md
+├── commands.md
+├── tips-and-tricks.md
+├── troubleshooting.md
+├── research-notes.md
+├── slides.html
+└── assets/README.md
+```
+
+If live web browsing is unavailable in the current environment, create the guide using available official repos, GitHub sources, and clearly mark any missing external scan such as Reddit for later update.
 
 ## Default Guide Structure
 
@@ -53,6 +84,7 @@ research-notes.md
 troubleshooting.md
 comparison.md
 quick-start.md
+tips-and-tricks.md
 ```
 
 ## Content Style
