@@ -1,0 +1,18 @@
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>إعداد المشروع والذاكرة</title><link rel="stylesheet" href="guide-style.css"></head><body><header class="top"><div class="topin"><a class="brand" href="slides.html"><div class="logo">CC</div><div><b>Claude Code Guide</b><br><small class="muted">02 — إعداد المشروع والذاكرة</small></div></a><a class="btn primary" href="../../index.html">الرئيسية</a></div></header><main class="layout"><aside class="side"><h3>الفصول</h3><a href="00-guide-map.html">خريطة الدليل</a><a href="01-concepts-and-setup.html">التثبيت</a><a href="03-professional-workflows.html">Workflow</a><a href="04-custom-commands.html">الأوامر</a></aside><section><div class="hero"><span class="badge">Chapter 02</span><h1>إعداد المشروع والذاكرة</h1><p class="lead">إذا لم تكتب قواعد المشروع، سيحاول Claude Code الاستنتاج. أحيانًا ينجح، وأحيانًا يكرر نفس الأخطاء.</p></div><div class="card"><h2>لماذا تحتاج تعليمات؟</h2><ul><li>تحديد طريقة التشغيل والاختبار.</li><li>توضيح style المشروع.</li><li>حماية الملفات الحساسة أو generated.</li><li>تقليل تكرار نفس التعليمات في كل جلسة.</li></ul></div><div class="card"><h2>CLAUDE.md</h2><p class="muted">ملف خاص بتعليمات Claude Code داخل المشروع.</p><pre># Project Instructions
+
+## Run
+Use the documented command in README.
+
+## Testing
+Before saying done, run the smallest relevant test when possible.
+
+## Style
+Keep changes minimal. Do not reformat unrelated files.
+
+## Safety
+Do not add secrets. Do not edit generated files unless asked.</pre></div><div class="card"><h2>AGENTS.md</h2><p>مفيد عندما تريد قواعد عامة لأي coding agent، وليس Claude فقط.</p><pre># Agent Rules
+
+- Read before editing.
+- Prefer small changes.
+- Explain risk before large changes.
+- Do not claim tests passed unless actually run.</pre></div><div class="card"><h2>ماذا تكتب؟</h2><div class="grid"><div class="mini"><h3>مهم</h3><p>وصف المشروع، أوامر التشغيل، أوامر الاختبار، الملفات المهمة، والممنوعات.</p></div><div class="mini"><h3>تجنب</h3><p>تعليمات عامة مثل “اكتب كود جيد”. اكتب قواعد قابلة للتحقق.</p></div></div></div><div class="call ok"><b>القرار:</b> أي مشروع ستستخدم معه Claude Code أكثر من مرة يحتاج ملف تعليمات مختصر.</div><div class="footer-nav"><a class="btn" href="01-concepts-and-setup.html">السابق</a><a class="btn primary" href="03-professional-workflows.html">التالي</a></div></section></main></body></html>
