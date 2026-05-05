@@ -1,46 +1,54 @@
-# Local AI with Claude Code
+# Local AI مع Claude Code
 
-Arabic practical guide for running local or low-cost AI models with Claude Code.
+دليل عملي لتشغيل نماذج محلية أو منخفضة التكلفة مع Claude Code — لتقليل التكلفة والتجريب السريع.
 
-## Goal
+## الهدف
 
-Use local models to reduce cost, improve privacy for experiments, and keep hosted premium models for hard architecture and production-level decisions.
+استخدام النماذج المحلية للمهام التكرارية الصغيرة، والاحتفاظ بـ Claude الأصلي للقرارات المعمارية ومراجعة الإنتاج.
 
-## Recommended Start
-
-Start with **Ollama + Claude Code**.
+## أسرع بداية
 
 ```bash
-ollama launch claude --model qwen3.5
+# 1. حمّل نموذج الكود
+ollama pull qwen2.5-coder
+
+# 2. اضبط متغيرات الاتصال
+export ANTHROPIC_BASE_URL=http://localhost:11434
+export ANTHROPIC_API_KEY=ollama
+
+# 3. شغّل Claude Code مع النموذج
+claude --model qwen2.5-coder
 ```
 
-Do not start with ten routes. Prove one route first.
+> قاعدة: لا تجرب أكثر من نموذجين في نفس اليوم. أثبت قيمة واحد أولاً.
 
-## How It Works
+## كيف تعمل المعمارية
 
-Claude Code does not run the model directly. It connects to an API endpoint. A local engine provides an Anthropic-compatible API or a gateway translates requests.
+Claude Code لا يشغّل النموذج مباشرة — يتصل بـ API endpoint. Ollama يوفر هذا الـ endpoint محلياً بعنوان `http://localhost:11434`.
 
-## Backend Options
+## خيارات الـ Backend
 
-| Backend | Best Use | Verdict |
-|---|---|---|
-| Ollama | Fastest local start | Start here |
-| LM Studio | GUI and model testing | Good second option |
-| llama.cpp | GGUF and advanced performance control | Use after basics |
-| LiteLLM Router | Multi-model routing | Later stage |
+| الخلفية | أفضل استخدام | الحكم |
+|---------|-------------|-------|
+| Ollama | أسرع تشغيل محلي | ابدأ هنا |
+| LM Studio | واجهة رسومية واختبار النماذج | خيار ثانٍ |
+| llama.cpp | GGUF وتحكم أداء متقدم | بعد إتقان الأساس |
+| LiteLLM Router | توجيه متعدد المسارات | مرحلة متقدمة |
 
-## Files
+## الملفات
 
-- [commands.md](commands.md): installation and run commands.
-- [download-strategy.md](download-strategy.md): model and download strategy.
-- [operations-guide.md](operations-guide.md): troubleshooting and execution plan.
-- [slides.html](slides.html): browser-based slide deck.
-- [assets/README.md](assets/README.md): slide image asset notes.
+- [quick-start.md](quick-start.md): خطوات التشغيل في 15 دقيقة.
+- [commands.md](commands.md): مرجع الأوامر الكامل.
+- [tips-and-tricks.md](tips-and-tricks.md): نصائح ميدانية.
+- [troubleshooting.md](troubleshooting.md): المشاكل الشائعة وحلولها.
+- [download-strategy.md](download-strategy.md): استراتيجية اختيار النماذج.
+- [operations-guide.md](operations-guide.md): الدليل التشغيلي التفصيلي.
+- [slides.html](slides.html): الدليل التفاعلي في المتصفح.
 
-## 24-Hour Decision
+## قرار 24 ساعة
 
-Answer one question only:
+سؤال واحد فقط:
 
-> Does this setup reduce real Claude usage in daily coding tasks?
+> هل يقلل هذا الإعداد استهلاكي الفعلي من Claude في مهام الكود اليومية؟
 
-If yes, keep it. If not, stop polishing and move to the next route.
+إذا نعم — احتفظ به. إذا لا — توقف عن التجريب وانتقل.

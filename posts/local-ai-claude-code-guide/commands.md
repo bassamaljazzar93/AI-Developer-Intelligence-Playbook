@@ -1,105 +1,102 @@
-# Commands
-
-Exact commands for testing local models with Claude Code.
+# الأوامر المرجعية — Local AI مع Claude Code
 
 ## Windows PowerShell
 
 ```powershell
-# Install Claude Code
-irm https://claude.ai/install.ps1 | iex
+# ثبّت Claude Code
+npm install -g @anthropic-ai/claude-code
 
-# Install Ollama
-irm https://ollama.com/install.ps1 | iex
+# ثبّت Ollama
+winget install Ollama.Ollama
+# أو من ollama.com/download
 
-# Check Ollama
-ollama -v
+# حمّل نموذج الكود
+ollama pull qwen2.5-coder
 
-# Pull a coding model
-ollama pull qwen3.5
-
-# Launch Claude Code with Ollama
-ollama launch claude --model qwen3.5
+# اربط Claude Code بـ Ollama وشغّله
+$env:ANTHROPIC_BASE_URL="http://localhost:11434"
+$env:ANTHROPIC_API_KEY="ollama"
+claude --model qwen2.5-coder
 ```
 
-## macOS / Linux / WSL
+## macOS / Linux
 
 ```bash
-# Install Claude Code
-curl -fsSL https://claude.ai/install.sh | bash
+# ثبّت Claude Code
+npm install -g @anthropic-ai/claude-code
 
-# Install Ollama
+# ثبّت Ollama
 curl -fsSL https://ollama.com/install.sh | sh
 
-# Pull model
-ollama pull qwen3.5
+# حمّل نموذج الكود
+ollama pull qwen2.5-coder
 
-# Launch Claude Code with Ollama
-ollama launch claude --model qwen3.5
+# اربط Claude Code بـ Ollama وشغّله
+export ANTHROPIC_BASE_URL=http://localhost:11434
+export ANTHROPIC_API_KEY=ollama
+claude --model qwen2.5-coder
 ```
 
-## Manual Environment Variables
+## متغيرات الاتصال الضرورية
 
-Use this only when you need manual debugging.
+المتغيران الوحيدان المطلوبان للاتصال بـ Ollama:
 
-### Bash
+### Bash / Zsh
 
 ```bash
-export ANTHROPIC_AUTH_TOKEN=ollama
-export ANTHROPIC_API_KEY=""
 export ANTHROPIC_BASE_URL=http://localhost:11434
+export ANTHROPIC_API_KEY=ollama
 
-claude --model qwen3.5
+claude --model qwen2.5-coder
 ```
 
 ### PowerShell
 
 ```powershell
-$env:ANTHROPIC_AUTH_TOKEN="ollama"
-$env:ANTHROPIC_API_KEY=""
 $env:ANTHROPIC_BASE_URL="http://localhost:11434"
+$env:ANTHROPIC_API_KEY="ollama"
 
-claude --model qwen3.5
+claude --model qwen2.5-coder
 ```
 
-## Important Endpoint Rule
-
-Correct:
+## نقطة الاتصال المهمة
 
 ```text
+# ✓ صحيح — بدون /v1
 http://localhost:11434
-```
 
-Wrong:
-
-```text
+# ✗ خاطئ — يسبب خطأ 404 مع Ollama
 http://localhost:11434/v1
 ```
 
-Adding `/v1` with Ollama can cause 404 errors.
+## إعداد السياق
 
-## Context Length
-
-Start small on weak devices.
+ابدأ بسياق صغير على الأجهزة الضعيفة.
 
 ```bash
-OLLAMA_CONTEXT_LENGTH=32000 ollama serve
-```
+# للأجهزة الضعيفة (CPU فقط)
+OLLAMA_CONTEXT_LENGTH=16000 ollama serve
 
-For stronger machines:
-
-```bash
+# للأجهزة القوية (GPU)
 OLLAMA_CONTEXT_LENGTH=64000 ollama serve
 ```
 
-On Windows PowerShell:
-
 ```powershell
+# Windows
 $env:OLLAMA_CONTEXT_LENGTH="32000"
 ollama serve
 ```
 
-## Quick Test Prompt
+## مراقبة النماذج
+
+```bash
+ollama list            # النماذج المحملة
+ollama ps              # النماذج الشغّالة حالياً
+ollama stop MODEL      # أوقف نموذجاً لتحرير الذاكرة
+```
+
+## اختبار سريع بعد الربط
 
 ```text
-Inspect this project. Do not edit anything. Give me a 5-point refactor plan only.
+افهم هيكل هذا المشروع. لا تعدل أي ملف. أعطني 5 نقاط للتحسين فقط.
 ```

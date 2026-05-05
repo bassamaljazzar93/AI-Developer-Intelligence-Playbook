@@ -1,19 +1,27 @@
 # AI Developer Intelligence Playbook
 
-Practical playbooks for AI developer tools: local models, Claude Code, Codex-style workflows, Ollama, LM Studio, and cost-efficient setup strategies.
+أدلة عملية لأدوات تطوير الذكاء الاصطناعي: Claude Code، النماذج المحلية، OpenClaw، واستراتيجيات تقليل التكلفة.
 
-## Current Playbooks
+## الأدلة المتاحة
 
-- [Local AI with Claude Code](posts/local-ai-claude-code-guide/README.md)
+| الدليل | الوصف | الحالة |
+|--------|-------|--------|
+| [الدليل الكامل لـ Claude Code](posts/claude-code-complete-guide/slides.html) | 13 فصلاً من الوثائق الرسمية والمجتمع | ✅ متاح |
+| [Local AI مع Claude Code](posts/local-ai-claude-code-guide/slides.html) | تشغيل Ollama محلياً مع Claude Code لتقليل التكلفة | ✅ متاح |
+| [OpenClaw — الـ AI Agent الشخصي](posts/openclaw-guide/slides.html) | agent مفتوح المصدر عبر واتساب وتيليغرام | ✅ متاح |
 
-## Playbook Structure
+## الصفحة الرئيسية
 
-Each guide should answer:
+[index.html](index.html) — مركز الأدلة مع بحث وفلاتر وتتبع التقدم.
 
-1. What works today?
-2. What is the fastest setup?
-3. What is free or low-cost?
-4. What are the common issues?
-5. What models or tools should be used?
-6. What commands are needed?
-7. What should be tested within 24 hours?
+## هيكل كل دليل
+
+كل دليل يجيب على:
+
+1. ما الذي يعمل اليوم؟
+2. ما أسرع طريقة للبدء؟
+3. ما المجاني أو منخفض التكلفة؟
+4. ما المشاكل الشائعة وحلولها؟
+5. ما النماذج أو الأدوات الموصى بها؟
+6. ما الأوامر المطلوبة؟
+7. ما الذي يجب اختباره خلال 24 ساعة؟
